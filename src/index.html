@@ -1,0 +1,36 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Momentum on One Axis on Canvas Objects</title>
+
+    <style>
+    #canvas {
+      border: 1px solid black;
+      /* center align */
+      display: block;
+      width: 900px;
+      height: 600px;
+      margin: 0 auto;
+    }
+    </style>
+  </head>
+  <body>
+
+    <canvas id="canvas" width="900" height="600">
+
+      THIS IS FALLBACK MESSAGE FOR OLD BROWSERS
+
+      YOUR BROWSER IS NOT SUPPORTING CANVAS
+
+    </canvas>
+
+    <p>Collisions are calculated for each existing pair of balls, not only consequtive ones, as well as using Pythagorean theorem to detect the collisions, as opposed to checking collisions of the onclosing boxes (|x1 - x2| < r1 + r2 || |y1 - y2| < r1 + r2), therefore improving the solution presented in the <a href="https://www.udemy.com/html5-canvas-ultimate-guide/learn/v4/overview">tutorial</a> by Alperen Talaslıoğlu</p>
+
+    <!-- BUNDLE WILL BE INJECTED HERE -->
+  </body>
+</html>
