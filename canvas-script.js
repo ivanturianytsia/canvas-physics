@@ -43,8 +43,9 @@ window.onload = function () {
   }
 
   function move (ball) {
-    ball.x = ball.x + ball.vx;
-    ball.y = ball.y + ball.vy;
+    // ball.vy += 0.098
+    ball.x += ball.vx;
+    ball.y += ball.vy;
 
     checkEdges(ball)
   }
@@ -62,12 +63,18 @@ window.onload = function () {
 
   function checkEdges (ball) {
     // Detect Edge Collisions
-    if(ball.x + ball.r > canvas.width || ball.x - ball.r < 0){
-      ball.vx *= -1;
+    if(ball.x + ball.r > canvas.width) {
+      ball.vx = -1 * Math.abs(ball.vx)
+    }
+    if (ball.x - ball.r < 0){
+      ball.vx = Math.abs(ball.vx)
     }
 
-    if(ball.y + ball.r > canvas.height || ball.y - ball.r < 0){
-      ball.vy *= -1;
+    if(ball.y + ball.r > canvas.height) {
+      ball.vy = -1 * Math.abs(ball.vy)
+    }
+    if (ball.y - ball.r < 0){
+      ball.vy = Math.abs(ball.vy)
     }
   }
 
