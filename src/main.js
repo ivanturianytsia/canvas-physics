@@ -6,10 +6,10 @@ window.onload = function () {
   const canvas = document.getElementById("canvas")
   const context = canvas.getContext("2d")
 
-  const minr = 50
-  const maxr = 100
-  const v = 5
-  const n = 10
+  const minr = 5
+  const maxr = 10
+  const v = 1
+  const n = 200
 
   window.requestAnimationFrame(animationLoop)
 
@@ -21,13 +21,22 @@ window.onload = function () {
     // Prevents from infinite loops
     let collisionCount = 0
     for (let i = 0; i < n; i++) {
-      let radius = randInt(minr, maxr)
-      let ball = new Ball(radius)
-  
-      ball.position = {
-        x: randInt(radius, canvas.width - radius),
-        y: randInt(radius, canvas.height - radius)
-      }
+      const radius = randInt(minr, maxr)
+      const color = '#' + ((1<<24) * Math.random()|0).toString(16)
+      let ball = new Ball({
+        radius,
+        color,
+        position: {
+          x: randInt(radius, canvas.width - radius),
+          y: randInt(radius, canvas.height - radius)
+        },
+        velocity: {
+          x: randInt(0, 2 * v) - v,
+          y: randInt(0, 2 * v) - v
+        },
+        mass: radius,
+        context
+      })
 
       // Check if collides with anything, if it does - regenerate
       let valid = true
@@ -42,20 +51,12 @@ window.onload = function () {
         i--
 
         // Stop generating when can't fit enough balls
-        if (collisionCount > n * 2) {
+        if (collisionCount > n * 5) {
           break
         } else {
           continue
         }
       }
-
-      ball.m = radius
-      ball.velocity = {
-        x: randInt(0, 2 * v) - v,
-        y: randInt(0, 2 * v) - v
-      }
-  
-      ball.context = context
       ball.draw()
   
       balls.push(ball)

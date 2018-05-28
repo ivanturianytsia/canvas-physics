@@ -1,19 +1,19 @@
-function Ball(radius, color) {
+function Ball({ radius, color, position, mass, velocity, context }) {
   var ball = this
   
   ball.r = radius || 10 
   ball.c = color || 'red' 
   ball.position = {
-    x: 0,
-    y: 0
+    x: position.x,
+    y: position.y
   } 
-  ball.m = 0 
+  ball.m = mass
   ball.velocity = {
-    x: 0,
-    y: 0
-  } 
+    x: velocity.x,
+    y: velocity.y
+  }
 
-  ball.context = null 
+  ball.context = context 
 }
 
 Ball.prototype.draw = function () {
